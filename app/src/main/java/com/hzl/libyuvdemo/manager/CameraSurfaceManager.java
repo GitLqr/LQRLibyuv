@@ -102,15 +102,15 @@ public class CameraSurfaceManager implements SensorEventListener, CameraYUVDataL
                     //进行yuv数据的缩放，旋转镜像缩放等操作
                     final byte[] dstData = new byte[scaleWidth * scaleHeight * 3 / 2];
                     final int morientation = mCameraUtil.getMorientation();
-                    YuvUtil.compressYUV(srcData, mCameraUtil.getCameraWidth(), mCameraUtil.getCameraHeight(), dstData, scaleHeight, scaleWidth, 0, morientation, morientation == 270);
+                    YuvUtil.yuvCompress(srcData, mCameraUtil.getCameraWidth(), mCameraUtil.getCameraHeight(), dstData, scaleHeight, scaleWidth, 0, morientation, morientation == 270);
 
                     //进行yuv数据裁剪的操作
                     final byte[] cropData = new byte[cropWidth * cropHeight * 3 / 2];
-                    YuvUtil.cropYUV(dstData, scaleWidth, scaleHeight, cropData, cropWidth, cropHeight, cropStartX, cropStartY);
+                    YuvUtil.yuvCropI420(dstData, scaleWidth, scaleHeight, cropData, cropWidth, cropHeight, cropStartX, cropStartY);
 
                     //这里将yuvi420转化为nv21，因为yuvimage只能操作nv21和yv12，为了演示方便，这里做一步转化的操作
                     final byte[] nv21Data = new byte[cropWidth * cropHeight * 3 / 2];
-                    YuvUtil.yuvI420ToNV21(cropData, nv21Data, cropWidth, cropHeight);
+                    YuvUtil.yuvI420ToNV21(cropData, cropWidth, cropHeight, nv21Data);
 
                     //这里采用yuvImage将yuvi420转化为图片，当然用libyuv也是可以做到的，这里主要介绍libyuv的裁剪，旋转，缩放，镜像的操作
                     YuvImage yuvImage = new YuvImage(nv21Data, ImageFormat.NV21, cropWidth, cropHeight, null);

@@ -145,3 +145,33 @@ private void drawSurfaceView(byte[] data, int width, int height) {
 
 > 文章：[《Android音视频——Libyuv使用实战》](https://juejin.im/post/5d8482a05188254c8b7bc7f2)<br>
 > 感谢：该库基于[LibyuvDemo](https://github.com/hzl123456/LibyuvDemo)，修复了bug，并添加了一些新api，感谢原作者的开源。
+
+
+## 四、更新
+#### 2019-11-06 扩展yuv图像转换API：
+- YuvUtil＃yuvNV21ToI420AndRotate(byte[] nv21Src, int width, int height, byte[] i420Dst, int degree);
+- YuvUtil＃yuvI420ToRGB24(byte[] i420Src, int width, int height, byte[] rgb24Dst);
+- YuvUtil＃yuvI420ToARGB(byte[] i420Src, int width, int height, int dst_stride, byte[] argbDst);
+- YuvUtil＃yuvI420ToRGBAMac(byte[] i420Src, int width, int height, int dst_stride, byte[] rgbaMacDst);
+- YuvUtil＃yuvI420ToARGB4444(byte[] i420Src, int width, int height, int dst_stride, byte[] argb4444Dst);
+- YuvUtil＃yuvI420ToRGB565(byte[] i420Src, int width, int height, byte[] rgb565Dst);
+- YuvUtil＃yuvI420ToRGB565Android(byte[] i420Src, int width, int height, byte[] rgb565Dst);
+- YuvUtil＃yuvI420ToARGB1555(byte[] i420Src, int width, int height, int dst_stride, byte[] argb1555Dst);
+- YuvUtil＃yuvI420ToYUY2(byte[] i420Src, int width, int height, int dst_stride, byte[] yuy2Dst);
+- YuvUtil＃yuvI420ToUYVY(byte[] i420Src, int width, int height, int dst_stride, byte[] uyvyDst);
+- YuvUtil＃yuvI420ToYV12(byte[] i420Src, int width, int height, int dst_stride, byte[] yv12Dst);
+- YuvUtil＃yuvYV12ToI420(byte[] yv12Src, int width, int height, byte[] i420Dst);
+- YuvUtil＃yuvNV12ToI420(byte[] nv12Src, int width, int height, byte[] i420Dst);
+- YuvUtil＃yuvI420ToNv12(byte[] i420Src, int width, int height, byte[] nv12Dst);
+- YuvUtil＃yuvNV12ToI420AndRotate(byte[] nv12Src, int width, int height, byte[] i420Dst, int degree);
+- YuvUtil＃yuvNV12ToRGB565(byte[] nv12Src, int width, int height, byte[] rgb565Dst);
+- YuvUtil＃yuvI420ToRGBAIPhone(byte[] i420Src, int width, int height, int dst_stride, byte[] rgbaDst);
+- YuvUtil＃yuvI420Copy(byte[] i420Src, int width, int height, int dst_stride, byte[] i420Dst);
+- YuvUtil＃yuvUYVYToI420(byte[] uyvySrc, int width, int height, byte[] i420Dst);
+- YuvUtil＃yuvYUY2ToI420(byte[] yuy2Src, int width, int height, byte[] i420Dst);
+- YuvUtil＃yuvRGB24ToARGB(byte[] rgb24Src, int width, int height, int dst_stride, byte[] argbDst);
+- YuvUtil＃yuvRGB24ToI420(byte[] rgb24Src, int width, int height, byte[] i420Dst);
+- YuvUtil＃yuvI420ToARGBMac(byte[] i420Src, int width, int height, int dst_stride, byte[] argbMacDst);
+- YuvUtil＃yuvARGBMacToI420(byte[] argbMacSrc, int width, int height, byte[] i420Dst);
+- YuvUtil＃yuvMirrorI420LeftRight(byte[] i420Src, int width, int height, byte[] i420Dst);
+- YuvUtil＃yuvMirrorI420UpDown(byte[] i420Src, int width, int height, byte[] i420Dst);
