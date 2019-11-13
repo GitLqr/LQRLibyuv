@@ -141,12 +141,26 @@ Java_com_libyuv_util_YuvUtil_yuvI420ToNV21(JNIEnv *env, jclass jcls, jbyteArray 
 }
 
 extern "C"
-JNIEXPORT void JNICALL Java_com_libyuv_util_YuvUtil_yuvNV21ToI420AndRotate
-        (JNIEnv *env, jclass jcls, jbyteArray nv21Src, jint width, jint height, jbyteArray i420Dst,
-         jint degree) {
+JNIEXPORT void JNICALL
+Java_com_libyuv_util_YuvUtil_yuvNV21ToI420AndRotate(JNIEnv *env, jclass jcls, jbyteArray nv21Src,
+                                                    jint width, jint height, jbyteArray i420Dst,
+                                                    jint degree) {
     jbyte *src_nv21_data = env->GetByteArrayElements(nv21Src, NULL);
     jbyte *dst_i420_data = env->GetByteArrayElements(i420Dst, NULL);
-    NV21ToI420(src_nv21_data, width, height, dst_i420_data);
+    switch (degree) {
+        case libyuv::kRotate0:
+            NV21ToI420(src_nv21_data, width, height, dst_i420_data);
+            break;
+        case libyuv::kRotate90:
+            NV21ToI420AndRotateClockwise(src_nv21_data, width, height, dst_i420_data);
+            break;
+        case libyuv::kRotate180:
+            NV21ToI420AndRotate180(src_nv21_data, width, height, dst_i420_data);
+            break;
+        case libyuv::kRotate270:
+            NV21ToI420AndRotateAntiClockwise(src_nv21_data, width, height, dst_i420_data);
+            break;
+    }
     env->ReleaseByteArrayElements(i420Dst, dst_i420_data, 0);
 }
 
@@ -287,17 +301,17 @@ JNIEXPORT void JNICALL Java_com_libyuv_util_YuvUtil_yuvNV12ToI420AndRotate
     jbyte *src_nv12_data = env->GetByteArrayElements(nv12Src, NULL);
     jbyte *dst_i420_data = env->GetByteArrayElements(i420Dst, NULL);
     switch (degree) {
-        case libyuv::kRotateNone:
-            NV21ToI420(src_nv12_data, width, height, dst_i420_data);
+        case libyuv::kRotate0:
+            NV12ToI420(src_nv12_data, width, height, dst_i420_data);
             break;
         case libyuv::kRotate90:
-            NV21ToI420AndRotateClockwise(src_nv12_data, width, height, dst_i420_data);
+            NV12ToI420AndRotateClockwise(src_nv12_data, width, height, dst_i420_data);
             break;
         case libyuv::kRotate180:
-            NV21ToI420AndRotate180(src_nv12_data, width, height, dst_i420_data);
+            NV12ToI420AndRotate180(src_nv12_data, width, height, dst_i420_data);
             break;
         case libyuv::kRotate270:
-            NV21ToI420AndRotateAntiClockwise(src_nv12_data, width, height, dst_i420_data);
+            NV12ToI420AndRotateAntiClockwise(src_nv12_data, width, height, dst_i420_data);
             break;
     }
     env->ReleaseByteArrayElements(i420Dst, dst_i420_data, 0);
