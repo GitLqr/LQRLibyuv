@@ -1,5 +1,7 @@
 #include "YuvJni.h"
 #include "YuvConvert.h"
+#include "string.h"
+#include "errno.h"
 
 extern "C"
 JNIEXPORT void JNICALL

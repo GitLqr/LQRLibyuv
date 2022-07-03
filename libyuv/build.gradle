@@ -1,13 +1,19 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 22
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
+        ndk {
+            // NDK r16b 默认移除了 armeabi 与 mips，但是可以通过手动声明开启，但在 r17 中这项功能将会永久失效
+            // https://developer.android.com/ndk/guides/application_mk
+            // https://developer.android.com/ndk/downloads/revision_history?hl=zh-cn
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86", "x86_64", "mips", "mips64"
+        }
         externalNativeBuild {
             cmake {
                 cppFlags ""
@@ -25,9 +31,10 @@ android {
             path 'CMakeLists.txt'
         }
     }
+    ndkVersion '16.1.4479499'
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:25.+'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    // implementation 'com.android.support:appcompat-v7:19.+'
 }
