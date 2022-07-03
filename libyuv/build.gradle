@@ -10,12 +10,12 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-        ndk {
-            // NDK r16b 默认移除了 armeabi 与 mips，但是可以通过手动声明开启，但在 r17 中这项功能将会永久失效
-            // https://developer.android.com/ndk/guides/application_mk
-            // https://developer.android.com/ndk/downloads/revision_history?hl=zh-cn
-            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86", "x86_64", "mips", "mips64"
-        }
+        // ndk {
+        //     // NDK r16b 默认移除了 armeabi 与 mips，但是可以通过手动声明开启，但在 r17 中这项功能将会永久失效
+        //     // https://developer.android.com/ndk/guides/application_mk
+        //     // https://developer.android.com/ndk/downloads/revision_history?hl=zh-cn
+        //     abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86", "x86_64", "mips", "mips64"
+        // }
         externalNativeBuild {
             cmake {
                 cppFlags ""
@@ -33,7 +33,10 @@ android {
             path 'CMakeLists.txt'
         }
     }
-    ndkVersion '16.1.4479499'
+
+    // No version of NDK matched the requested version 16.1.4479499. Versions available locally: 22.1.7171670
+    // ndkVersion '16.1.4479499'
+    ndkVersion '22.1.7171670'
 }
 
 dependencies {
