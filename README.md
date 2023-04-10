@@ -185,3 +185,5 @@ private void drawSurfaceView(byte[] data, int width, int height) {
 - YuvUtil＃yuvARGBMacToI420(byte[] argbMacSrc, int width, int height, byte[] i420Dst);
 - YuvUtil＃yuvMirrorI420LeftRight(byte[] i420Src, int width, int height, byte[] i420Dst);
 - YuvUtil＃yuvMirrorI420UpDown(byte[] i420Src, int width, int height, byte[] i420Dst);
+
+![](https://cdn.jsdelivr.net/gh/FullStackAction/PicBed@resource/image/FSA_QR_bottom.png)
